@@ -1,7 +1,7 @@
 
 # codex-projects-standards
 
-Personal software project standards, documentation scaffolds, and agent instructions.
+Personal software project standards, documentation scaffolds, and agent instructions for openAI codex.
 
 This repo is the source of truth for how I want new software projects to begin. It provides reusable templates for documentation, security, testing expectations, multi-agent coordination, and GitHub workflow setup.
 
