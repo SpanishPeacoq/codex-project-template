@@ -1,4 +1,4 @@
-```md
+
 # codex-projects-standards
 
 Personal software project standards, documentation scaffolds, and agent instructions.
@@ -69,4 +69,4 @@ Coding agents working from this standard should:
 ## Notes
 
 This repo is meant to evolve. Add more templates only when a project type has genuinely different needs.
-```
+
