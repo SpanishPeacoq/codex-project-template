@@ -18,10 +18,25 @@ Describe the purpose of this repository in one or two paragraphs.
 
 Before substantial edits:
 
-- Check `git status` and current branch.
+- Check `git status` and the current branch.
 - Read `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `docs/architecture.md`, and relevant ADRs.
 - Identify the smallest safe change that satisfies the request.
 - If multiple agents are working, state which files or modules you intend to own.
+
+## Branch And Worktree Policy
+
+After the initial project baseline is committed, treat `main` as the clean integration branch. Do not implement substantive changes directly on `main`.
+
+- Start each reviewable change from current `origin/main` on a descriptive task branch. Follow an established repo convention; otherwise use `agent/<short-description>`.
+- Before editing, fetch the remote and update `main` with a fast-forward-only pull when the primary checkout is clean.
+- If `main` contains uncommitted work, do not stash, reset, switch, or overwrite it automatically. Preserve it and create a separate worktree from `origin/main`, or stop and ask for direction.
+- Use a separate worktree when work is parallel, assigned to another agent or Codex task, risky, long-lived, or needs `main` to remain available. A worktree is optional for a small sequential change handled by one agent in the current checkout.
+- Keep one branch checked out in only one worktree. Record the branch, worktree path, and intended file or module ownership before parallel edits.
+- Separate scope or architecture decisions from implementation when each deserves independent review.
+- Push the task branch and merge through a pull request. Do not merge or commit substantive work directly to `main` unless the user explicitly requests that workflow.
+- Remove a task worktree and delete its branch only after verifying that the work is committed, pushed or merged, and the worktree is clean.
+
+See `CONTRIBUTING.md` for commands and the full branch/worktree lifecycle.
 
 ## Commands
 

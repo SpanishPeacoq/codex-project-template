@@ -59,6 +59,7 @@ Do not add empty bureaucracy. Every file should answer recurring questions, pres
 Coding agents working from this standard should:
 
 - Check git status before editing.
+- Keep `main` clean, use a task branch for substantive changes, and use an isolated worktree for parallel, risky, long-lived, or separate-agent work.
 - Preserve user changes.
 - Keep work scoped.
 - Add or update tests for behavior changes.
@@ -69,4 +70,3 @@ Coding agents working from this standard should:
 ## Notes
 
 This repo is meant to evolve. Add more templates only when a project type has genuinely different needs.
-
