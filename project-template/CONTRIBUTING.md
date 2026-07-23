@@ -9,6 +9,55 @@ This project treats human and AI-agent contributions the same way: changes shoul
 - Pull the latest remote state when working on a shared branch.
 - Read `README.md`, `AGENTS.md`, `SECURITY.md`, `docs/architecture.md`, and relevant ADRs.
 
+## Branch And Worktree Workflow
+
+After the initial baseline commit, substantive work should not begin directly on `main`.
+
+1. Inspect the current checkout:
+
+   ```bash
+   git status --short --branch
+   git worktree list
+   ```
+
+2. When the primary checkout is clean, update the baseline:
+
+   ```bash
+   git fetch origin
+   git switch main
+   git pull --ff-only
+   ```
+
+   If the checkout is dirty, preserve it. Do not automatically stash, reset, or move user changes.
+
+3. Create a descriptive task branch. Follow an existing naming convention; otherwise use `agent/<short-description>`.
+
+   For a small sequential change in the current checkout:
+
+   ```bash
+   git switch -c agent/<short-description>
+   ```
+
+   For parallel, risky, long-lived, or separate-agent work, create an isolated sibling worktree directly from current `origin/main`:
+
+   ```bash
+   git fetch origin
+   git worktree add ../<project>-<short-description> \
+     -b agent/<short-description> origin/main
+   ```
+
+4. Make scoped changes, add focused tests, and commit on the task branch. Multiple agents should declare file or module ownership and avoid sharing a branch or worktree.
+5. Push the branch and open a pull request into `main`. Keep scope/design work separate from implementation when they are independently reviewable.
+6. After merge, verify the worktree is clean before cleanup:
+
+   ```bash
+   git worktree remove ../<project>-<short-description>
+   git branch -d agent/<short-description>
+   git fetch --prune
+   ```
+
+Never force-remove a worktree or force-delete a branch merely to make cleanup succeed. Inspect unmerged commits and uncommitted files first.
+
 ## Change Style
 
 - Keep behavior changes separate from unrelated refactors.
