@@ -1,0 +1,21 @@
+{
+  "soft_limits": {
+    "production_files": 5,
+    "production_churn": 400,
+    "total_files": 15,
+    "total_churn": 1000
+  },
+  "hard_limits": {
+    "production_files": 8,
+    "production_churn": 800,
+    "total_files": 25,
+    "total_churn": 2000
+  },
+  "non_production_prefixes": [
+    ".github/",
+    "docs/",
+    "doc/",
+    "tests/",
+    "test/"
+  ]
+}

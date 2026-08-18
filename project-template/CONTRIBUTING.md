@@ -66,6 +66,44 @@ Never force-remove a worktree or force-delete a branch merely to make cleanup su
 - Update docs when setup, commands, architecture, security posture, or workflows change.
 - Add an ADR for project-shaping decisions.
 
+## Pull Request Scope Harness
+
+Every pull request declares one primary behavioral outcome. Code, tests, and
+documentation needed to prove that outcome are one slice. Adjacent fixes,
+cleanup, and features become follow-up slices.
+
+The repository runs `scripts/check_pr_scope.py` in GitHub Actions. Its default
+budgets are:
+
+| Measure | Review threshold | Hard threshold |
+| --- | ---: | ---: |
+| Production files | 5 | 8 |
+| Production line churn | 400 | 800 |
+| Total changed files | 15 | 25 |
+| Total line churn | 1,000 | 2,000 |
+
+Tests, documentation, and `.github/` files count toward total size but not
+production size. Thresholds are signals, not instructions to divide work at an
+arbitrary line. A small PR can still be too broad, and a cohesive change can
+occasionally exceed a threshold.
+
+When a review threshold is exceeded, the PR body must explain why the change
+cannot be divided safely. When a hard threshold is exceeded, the PR also needs
+the `approved-large-pr` label from a maintainer. Generated files, mechanical
+migrations, and genuinely atomic cross-cutting changes use the same documented
+exception path.
+
+Before opening a PR, run:
+
+```bash
+python scripts/check_pr_scope.py --base origin/main --head HEAD
+```
+
+Repositories created from this template should make the `pr-scope` GitHub
+Actions check required in branch protection. The workflow is the shared
+enforcement layer across humans, computers, and coding agents; local hooks are
+optional convenience only.
+
 ## Multi-Agent Work
 
 - State intended file or module ownership before editing.
@@ -97,4 +135,5 @@ For security-sensitive changes, check:
 - Tests/checks pass or documented blockers remain.
 - Relevant docs are updated.
 - ADRs capture important decisions.
+- The PR template is complete and the `pr-scope` check passes.
 - Changes are committed and pushed when appropriate.
