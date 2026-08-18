@@ -23,6 +23,33 @@ Before substantial edits:
 - Identify the smallest safe change that satisfies the request.
 - If multiple agents are working, state which files or modules you intend to own.
 
+## PR Scope Contract
+
+Before editing, state the intended review slice:
+
+- One observable outcome.
+- The primary issue, TODO, bug report, or proposal it addresses.
+- Expected files or modules.
+- What is explicitly out of scope.
+- How the slice will be verified and rolled back.
+
+One pull request should deliver one independently reviewable behavioral
+outcome. Code, tests, and documentation for that outcome belong together;
+unrelated cleanup, adjacent bugs, and follow-up features do not. When a larger
+goal needs several slices, record the slice plan in the proposal or issue and
+stop after the current slice is reviewable.
+
+Run the repository scope checker before publishing:
+
+```bash
+python scripts/check_pr_scope.py --base origin/main --head HEAD
+```
+
+The line and file budgets are review signals, not a quota to game. Split work
+at behavioral boundaries. An inseparable oversized change requires an explicit
+scope exception in the PR body and maintainer approval under
+`CONTRIBUTING.md`.
+
 ## Branch And Worktree Policy
 
 After the initial project baseline is committed, treat `main` as the clean integration branch. Do not implement substantive changes directly on `main`.
@@ -80,5 +107,6 @@ Replace these with real project commands as soon as they exist.
 - Relevant tests or checks have been run, or blockers are documented.
 - Security-sensitive surfaces have been considered.
 - Relevant docs and ADRs are updated.
+- The PR has one primary outcome and passes the PR scope check.
 - `git status` has been reviewed.
 - Finished work is committed and pushed when credentials and user intent allow.
