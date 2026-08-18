@@ -9,7 +9,7 @@ This repo is the source of truth for how I want new software projects to begin. 
 
 ### Generic Project Template
 
-Use `templates/generic/` as the default scaffold for new software projects unless a more specific template applies.
+Use `project-template/` as the default scaffold for new software projects unless a more specific template applies.
 
 The generic template includes:
 
@@ -18,7 +18,6 @@ README.md
 AGENTS.md
 CONTRIBUTING.md
 SECURITY.md
-.env.example
 .gitignore
 docs/
   architecture.md
@@ -26,17 +25,26 @@ docs/
     0001-record-project-baseline.md
 .github/
   pull_request_template.md
+  pr-scope.json
   workflows/
-    ci.yml
+    pr-scope.yml
+scripts/
+  check_pr_scope.py
+tests/
+  test_check_pr_scope.py
 ```
 
 ## How To Use
 
-Copy the contents of `templates/generic/` into the root of a new project, then customize the TODOs, commands, architecture notes, and ADR date.
+Copy the contents of `project-template/` into the root of a new project, then customize the TODOs, commands, architecture notes, and ADR date.
 
 ```bash
-cp -R templates/generic/. /path/to/new-project/
+cp -R project-template/. /path/to/new-project/
 ```
+
+After the first push, enable branch protection for `main` and require the
+`pr-scope` check. The workflow is present in the scaffold, but GitHub branch
+protection is configured at the repository level.
 
 ## Philosophy
 

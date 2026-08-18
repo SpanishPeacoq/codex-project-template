@@ -1,0 +1,31 @@
+name: pr-scope
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  pr-scope:
+    name: pr-scope
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Load checker from the protected base branch
+        run: |
+          git show "origin/${{ github.base_ref }}:scripts/check_pr_scope.py" > "$RUNNER_TEMP/check_pr_scope.py"
+          git show "origin/${{ github.base_ref }}:.github/pr-scope.json" > "$RUNNER_TEMP/pr-scope.json"
+      - name: Test proposed scope checker
+        run: python tests/test_check_pr_scope.py
+      - name: Check pull request scope
+        run: >-
+          python "$RUNNER_TEMP/check_pr_scope.py"
+          --base "origin/${{ github.base_ref }}"
+          --head HEAD
+          --config "$RUNNER_TEMP/pr-scope.json"
+          --event "$GITHUB_EVENT_PATH"
