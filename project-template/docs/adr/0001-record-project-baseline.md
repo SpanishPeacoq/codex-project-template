@@ -16,6 +16,7 @@ Use the following baseline files:
 - `AGENTS.md` for coding-agent operating rules.
 - `CONTRIBUTING.md` for contribution and multi-agent workflow.
 - `SECURITY.md` for security expectations.
+- `docs/product-requirements.md` for user needs, scope, non-goals, and acceptance criteria.
 - `docs/architecture.md` for the current system map.
 - `docs/adr/` for important decisions.
 - `.github/` for collaboration templates and automation when hosted on GitHub.

@@ -6,6 +6,10 @@
 
 <!-- Link the issue, TODO, bug report, proposal, or ADR. -->
 
+## Requirements
+
+<!-- List affected PRD-* IDs, or use `N/A: <substantive reason>` for a non-product change. -->
+
 ## In scope
 
 -

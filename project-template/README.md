@@ -36,6 +36,7 @@ Short description of what this project does and who it is for.
 ├── tests/
 │   └── test_check_pr_scope.py
 ├── docs/
+│   ├── product-requirements.md
 │   ├── architecture.md
 │   └── adr/
 └── .github/
@@ -52,6 +53,7 @@ configuration, add a safe `.env.example`; never commit real credentials.
 
 ## Documentation
 
+- `docs/product-requirements.md` is the authoritative statement of user needs, scope, and acceptance criteria.
 - `docs/architecture.md` explains the current system shape.
 - `docs/adr/` records important decisions and tradeoffs.
 - `AGENTS.md` tells coding agents how to work in this repo.

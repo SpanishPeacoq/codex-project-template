@@ -7,7 +7,7 @@ This project treats human and AI-agent contributions the same way: changes shoul
 - Check the current branch.
 - Check `git status`.
 - Pull the latest remote state when working on a shared branch.
-- Read `README.md`, `AGENTS.md`, `SECURITY.md`, `docs/architecture.md`, and relevant ADRs.
+- Read `README.md`, `AGENTS.md`, `SECURITY.md`, `docs/product-requirements.md`, `docs/architecture.md`, and relevant ADRs.
 
 ## Branch And Worktree Workflow
 
@@ -64,6 +64,7 @@ Never force-remove a worktree or force-delete a branch merely to make cleanup su
 - Prefer small, reviewable commits.
 - Update tests when behavior changes.
 - Update docs when setup, commands, architecture, security posture, or workflows change.
+- Update `docs/product-requirements.md` when user needs, scope, non-goals, or acceptance criteria change.
 - Add an ADR for project-shaping decisions.
 
 ## Pull Request Scope Harness
@@ -71,6 +72,9 @@ Never force-remove a worktree or force-delete a branch merely to make cleanup su
 Every pull request declares one primary behavioral outcome. Code, tests, and
 documentation needed to prove that outcome are one slice. Adjacent fixes,
 cleanup, and features become follow-up slices.
+
+The PR must list affected `PRD-*` IDs from `docs/product-requirements.md`, or
+use `N/A:` followed by a substantive explanation for a non-product change.
 
 The repository runs `scripts/check_pr_scope.py` in GitHub Actions. Its default
 budgets are:

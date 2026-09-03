@@ -19,7 +19,7 @@ Describe the purpose of this repository in one or two paragraphs.
 Before substantial edits:
 
 - Check `git status` and the current branch.
-- Read `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `docs/architecture.md`, and relevant ADRs.
+- Read `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `docs/product-requirements.md`, `docs/architecture.md`, and relevant ADRs.
 - Identify the smallest safe change that satisfies the request.
 - If multiple agents are working, state which files or modules you intend to own.
 
@@ -29,6 +29,7 @@ Before editing, state the intended review slice:
 
 - One observable outcome.
 - The primary issue, TODO, bug report, or proposal it addresses.
+- The affected `PRD-*` IDs, or `N/A:` followed by a substantive explanation for non-product changes.
 - Expected files or modules.
 - What is explicitly out of scope.
 - How the slice will be verified and rolled back.
@@ -86,6 +87,7 @@ Replace these with real project commands as soon as they exist.
 - Do not silently rewrite another agent's work.
 - Leave unresolved assumptions in the task thread or a dedicated note.
 - Keep documentation updates close to behavior, setup, architecture, or security changes.
+- Keep user needs, scope, non-goals, and acceptance criteria in `docs/product-requirements.md`; keep implementation design in `docs/architecture.md`.
 
 ## Testing Expectations
 
@@ -107,6 +109,7 @@ Replace these with real project commands as soon as they exist.
 - Relevant tests or checks have been run, or blockers are documented.
 - Security-sensitive surfaces have been considered.
 - Relevant docs and ADRs are updated.
+- Changed product behavior remains traceable to an accepted requirement or an explicitly proposed requirements update.
 - The PR has one primary outcome and passes the PR scope check.
 - `git status` has been reviewed.
 - Finished work is committed and pushed when credentials and user intent allow.
