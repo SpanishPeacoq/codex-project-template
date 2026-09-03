@@ -21,14 +21,18 @@ CONFIG = scope.ScopeConfig(
 )
 
 
-def body(exception: str = "None.", checked: bool = True) -> str:
+def body(
+    exception: str = "None.",
+    checked: bool = True,
+    requirements: str = "PRD-001.",
+) -> str:
     checkbox = "x" if checked else " "
     return f"""## Outcome
 One result.
 ## Primary intake
 Issue 1.
 ## Requirements
-PRD-001.
+{requirements}
 ## In scope
 - implementation
 ## Out of scope
@@ -135,6 +139,51 @@ class ScopeCheckTests(unittest.TestCase):
         )
         self.assertFalse(result.ok)
         self.assertIn("Requirements", " ".join(result.errors))
+
+    def test_malformed_requirements_fail(self):
+        result = scope.evaluate(
+            scope.Metrics(1, 20, 2, 40),
+            CONFIG,
+            body=body(requirements="banana"),
+            labels=set(),
+            valid_requirement_ids={"PRD-001"},
+        )
+        self.assertFalse(result.ok)
+        self.assertIn("existing PRD-* ID", " ".join(result.errors))
+
+    def test_unknown_requirement_id_fails(self):
+        result = scope.evaluate(
+            scope.Metrics(1, 20, 2, 40),
+            CONFIG,
+            body=body(requirements="PRD-999"),
+            labels=set(),
+            valid_requirement_ids={"PRD-001"},
+        )
+        self.assertFalse(result.ok)
+        self.assertIn("PRD-999", " ".join(result.errors))
+
+    def test_unexplained_not_applicable_fails(self):
+        result = scope.evaluate(
+            scope.Metrics(1, 20, 2, 40),
+            CONFIG,
+            body=body(requirements="N/A"),
+            labels=set(),
+            valid_requirement_ids={"PRD-001"},
+        )
+        self.assertFalse(result.ok)
+        self.assertIn("substantive explanation", " ".join(result.errors))
+
+    def test_explained_not_applicable_passes(self):
+        result = scope.evaluate(
+            scope.Metrics(1, 20, 2, 40),
+            CONFIG,
+            body=body(
+                requirements="N/A: Documentation-only repository workflow change."
+            ),
+            labels=set(),
+            valid_requirement_ids={"PRD-001"},
+        )
+        self.assertTrue(result.ok)
 
 
 if __name__ == "__main__":

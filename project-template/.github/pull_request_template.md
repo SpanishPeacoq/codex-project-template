@@ -8,7 +8,7 @@
 
 ## Requirements
 
-<!-- List affected requirement IDs, or explain why this PR does not change product behavior. -->
+<!-- List affected PRD-* IDs, or use `N/A: <substantive reason>` for a non-product change. -->
 
 ## In scope
 

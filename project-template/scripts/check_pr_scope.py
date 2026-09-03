@@ -33,6 +33,8 @@ NO_EXCEPTION_VALUES = {
     "not applicable",
     "no exception requested",
 }
+REQUIREMENT_ID_PATTERN = re.compile(r"\bPRD-(?:[A-Z]+-)*\d+\b")
+REQUIREMENTS_NA_PATTERN = re.compile(r"^\s*N/A\s*:\s*(.+)$", re.IGNORECASE | re.DOTALL)
 
 
 @dataclass(frozen=True)
@@ -158,6 +160,32 @@ def has_content(value: str | None) -> bool:
     return without_comments.strip() not in {"", "-"}
 
 
+def requirement_ids(text: str) -> set[str]:
+    return set(REQUIREMENT_ID_PATTERN.findall(text))
+
+
+def requirement_errors(
+    value: str,
+    valid_requirement_ids: set[str] | None,
+) -> list[str]:
+    ids = requirement_ids(value)
+    if ids:
+        if valid_requirement_ids is None:
+            return []
+        unknown = sorted(ids - valid_requirement_ids)
+        if unknown:
+            return [f"unknown product requirement ID: {item}" for item in unknown]
+        return []
+
+    not_applicable = REQUIREMENTS_NA_PATTERN.match(value)
+    if not_applicable and len(not_applicable.group(1).strip()) >= 20:
+        return []
+    return [
+        "Requirements must list an existing PRD-* ID or use "
+        "N/A: followed by a substantive explanation"
+    ]
+
+
 def exceeded(metrics: Metrics, limits: Limits) -> list[str]:
     failures = []
     for field, label in (
@@ -179,6 +207,7 @@ def evaluate(
     *,
     body: str | None = None,
     labels: set[str] | None = None,
+    valid_requirement_ids: set[str] | None = None,
 ) -> Result:
     labels = labels or set()
     errors: list[str] = []
@@ -191,6 +220,11 @@ def evaluate(
             value = section(body, title)
             if not has_content(value):
                 errors.append(f"PR body section is missing or empty: {title}")
+        requirements = section(body, "Requirements")
+        if has_content(requirements):
+            errors.extend(
+                requirement_errors(requirements or "", valid_requirement_ids)
+            )
         if OUTCOME_CHECK not in body:
             errors.append("confirm the one-primary-outcome checkbox")
 
@@ -253,13 +287,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--base", required=True)
     parser.add_argument("--head", default="HEAD")
     parser.add_argument("--config", default=".github/pr-scope.json")
+    parser.add_argument("--requirements", default="docs/product-requirements.md")
     parser.add_argument("--event", type=Path)
     args = parser.parse_args(argv)
 
     config = load_config(Path(args.config))
+    valid_requirement_ids = requirement_ids(
+        Path(args.requirements).read_text(encoding="utf-8")
+    )
     metrics = collect_metrics(args.base, args.head, config)
     body, labels = event_context(args.event)
-    result = evaluate(metrics, config, body=body, labels=labels)
+    result = evaluate(
+        metrics,
+        config,
+        body=body,
+        labels=labels,
+        valid_requirement_ids=valid_requirement_ids,
+    )
     report = render(metrics, result)
     print(report, end="")
 

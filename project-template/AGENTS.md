@@ -29,7 +29,7 @@ Before editing, state the intended review slice:
 
 - One observable outcome.
 - The primary issue, TODO, bug report, or proposal it addresses.
-- The affected product-requirement IDs, or an explained `N/A` for non-product changes.
+- The affected `PRD-*` IDs, or `N/A:` followed by a substantive explanation for non-product changes.
 - Expected files or modules.
 - What is explicitly out of scope.
 - How the slice will be verified and rolled back.
