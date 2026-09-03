@@ -6,6 +6,10 @@
 
 <!-- Link the issue, TODO, bug report, proposal, or ADR. -->
 
+## Requirements
+
+<!-- List affected requirement IDs, or explain why this PR does not change product behavior. -->
+
 ## In scope
 
 -

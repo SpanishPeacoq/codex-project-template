@@ -52,12 +52,14 @@ Use stable identifiers so requirements can be referenced from issues, tests, pul
 
 Document only requirements that materially constrain the product or implementation.
 
-- Privacy and data ownership: TODO
-- Security and access control: TODO
-- Reliability and recovery: TODO
-- Performance: TODO
-- Accessibility and supported devices: TODO
-- Portability or interoperability: TODO
+| ID | Requirement | Acceptance criteria | Priority |
+| --- | --- | --- | --- |
+| `PRD-NFR-001` | TODO: Define privacy and data-ownership behavior. | TODO: State how compliance is verified. | Must |
+| `PRD-NFR-002` | TODO: Define security and access-control behavior. | TODO: State how compliance is verified. | Must |
+| `PRD-NFR-003` | TODO: Define reliability and recovery expectations. | TODO: State how compliance is verified. | Must |
+| `PRD-NFR-004` | TODO: Define measurable performance expectations. | TODO: State how compliance is verified. | Should |
+| `PRD-NFR-005` | TODO: Define accessibility and supported-device expectations. | TODO: State how compliance is verified. | Should |
+| `PRD-NFR-006` | TODO: Define portability or interoperability expectations. | TODO: State how compliance is verified. | Should |
 
 ## Data And Integrations
 

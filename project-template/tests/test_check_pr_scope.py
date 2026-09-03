@@ -27,6 +27,8 @@ def body(exception: str = "None.", checked: bool = True) -> str:
 One result.
 ## Primary intake
 Issue 1.
+## Requirements
+PRD-001.
 ## In scope
 - implementation
 ## Out of scope
@@ -122,6 +124,17 @@ class ScopeCheckTests(unittest.TestCase):
         )
         self.assertFalse(result.ok)
         self.assertIn("Outcome", " ".join(result.errors))
+
+    def test_missing_requirements_fails(self):
+        incomplete = body().replace("## Requirements\nPRD-001.\n", "")
+        result = scope.evaluate(
+            scope.Metrics(1, 20, 2, 40),
+            CONFIG,
+            body=incomplete,
+            labels=set(),
+        )
+        self.assertFalse(result.ok)
+        self.assertIn("Requirements", " ".join(result.errors))
 
 
 if __name__ == "__main__":

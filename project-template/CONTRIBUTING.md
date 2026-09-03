@@ -73,6 +73,9 @@ Every pull request declares one primary behavioral outcome. Code, tests, and
 documentation needed to prove that outcome are one slice. Adjacent fixes,
 cleanup, and features become follow-up slices.
 
+The PR must list affected requirement IDs from `docs/product-requirements.md`,
+or explain why the change does not affect product behavior.
+
 The repository runs `scripts/check_pr_scope.py` in GitHub Actions. Its default
 budgets are:
 

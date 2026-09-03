@@ -17,6 +17,7 @@ OUTCOME_CHECK = "- [x] This PR has one primary behavioral outcome."
 REQUIRED_SECTIONS = (
     "Outcome",
     "Primary intake",
+    "Requirements",
     "In scope",
     "Out of scope",
     "Verification",
