@@ -20,6 +20,7 @@ CONTRIBUTING.md
 SECURITY.md
 .gitignore
 docs/
+  product-requirements.md
   architecture.md
   adr/
     0001-record-project-baseline.md
@@ -56,6 +57,7 @@ Every new project should have:
 - Repo-local coding-agent instructions in `AGENTS.md`.
 - A safe collaboration protocol in `CONTRIBUTING.md`.
 - Security expectations in `SECURITY.md`.
+- An authoritative user and product contract in `docs/product-requirements.md`.
 - A current system map in `docs/architecture.md`.
 - Durable decisions captured as ADRs in `docs/adr/`.
 - GitHub workflow defaults when the project is hosted on GitHub.
