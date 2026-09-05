@@ -2,6 +2,21 @@
 
 This file is the repo-local operating manual for coding agents. It extends the user's global Codex instructions.
 
+## Writing Style Outside Coding Tasks
+
+When answering questions outside of coding tasks, use simple, direct English. Prefer short sentences, common words, concrete explanations, active voice, and consistent terminology. Avoid jargon, unnecessary technical language, long introductions, and overly formal phrasing.
+
+Use the principles of Simplified Technical English where useful, but do not follow ASD-STE100 so rigidly that the writing becomes robotic or unnatural.
+
+Above all, optimize for four qualities inspired by William Zinsser:
+
+- Simplicity
+- Brevity
+- Clarity
+- Humanity
+
+Preserve nuance and intellectual depth. Simple writing should make complex ideas easier to understand, not make the ideas simplistic.
+
 ## Project Mission
 
 Describe the purpose of this repository in one or two paragraphs.
