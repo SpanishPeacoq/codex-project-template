@@ -47,6 +47,25 @@ After the first push, enable branch protection for `main` and require the
 `pr-scope` check. The workflow is present in the scaffold, but GitHub branch
 protection is configured at the repository level.
 
+## How Codex Loads Instructions
+
+Codex reads `~/.codex/AGENTS.md` for personal defaults on each computer, then
+loads the project's `AGENTS.md`. A global `AGENTS.override.md`, when present,
+takes precedence over the global `AGENTS.md`. Project instructions can override
+global defaults. Instructions load when a Codex run or session starts.
+
+The scaffold's `project-template/AGENTS.md` includes the writing rule for
+questions outside coding tasks: simple, brief, clear, human English that
+preserves nuance and depth. New projects receive it when you copy the scaffold.
+
+This GitHub repository does not automatically sync instructions to other
+computers or existing projects. For personal defaults across projects, add the
+same writing section to `~/.codex/AGENTS.md` on each computer while preserving
+its existing rules. For an existing project, add the section to that project's
+`AGENTS.md`. Start a new Codex session to load updated file instructions.
+
+See [OpenAI's instruction-loading guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
+
 ## Philosophy
 
 The goal is useful structure, not clutter.
