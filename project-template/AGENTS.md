@@ -5,8 +5,8 @@ single source of truth for every agent. Most coding agents read `AGENTS.md`
 directly; Claude Code reads `CLAUDE.md`, which imports this file. It extends
 the user's global agent instructions.
 
-Project standard version: v1.0.0
-(https://github.com/SpanishPeacoq/codex-project-template/releases/tag/v1.0.0).
+Project standard version: v1.0.1
+(https://github.com/SpanishPeacoq/codex-project-template/releases/tag/v1.0.1).
 Update this line whenever the project syncs with a newer release of the
 standard.
 
