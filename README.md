@@ -62,7 +62,10 @@ To bring an existing project up to the current standard, compare its
 and do not overwrite the project's own facts. ADR numbers belong to each
 project: add each template ADR the project lacks (such as the operating-model
 ADR, `0002` in the template) under the project's next free number, and never
-edit the project's accepted ADRs. Then set the "Project
+edit the project's accepted ADRs. When you renumber, update the new ADR's
+filename, its heading, its `Extends`/`Supersedes` line (pointing at the
+project's own matching ADR), and every link to it, such as in
+`docs/architecture.md`. Then set the "Project
 standard version" line in the project's `AGENTS.md` to the release you synced
 from. Each release's notes list what changed since the previous one.
 
