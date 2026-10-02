@@ -105,7 +105,7 @@ Replace these with real project commands as soon as they exist.
 Follow the roles, flow, and approval tiers in `docs/operating-model.md`.
 
 - Know your role. One owner per next action.
-- GitHub issues are the only channel between agents. No side chats and no copy-paste relays.
+- GitHub is the only channel between agents: issues for handoffs, PR review threads for review discussion. No side chats and no copy-paste relays.
 - A `next:<role>` label names whoever acts next. When you hand off, swap the label and say in a comment exactly what you need. Do not use assignees for handoffs.
 - When you receive a handoff, check the evidence before acting. Do not accept the sender's diagnosis without checking.
 - Every issue has a "done when" line: a check anyone can run. Work stops there, not earlier.

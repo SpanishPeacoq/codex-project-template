@@ -27,6 +27,7 @@ docs/
   lessons-learned.md
   adr/
     0001-record-project-baseline.md
+    0002-adopt-agent-operating-model.md
 .github/
   pull_request_template.md
   pr-scope.json
@@ -57,7 +58,8 @@ repository level.
 To bring an existing project up to the current standard, compare its
 `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `docs/` with
 `project-template/`. Add what is missing in one PR, keep project-specific rules,
-and do not overwrite the project's own facts.
+and do not overwrite the project's own facts. Add new ADRs (such as `0002`)
+rather than editing the project's accepted ones.
 
 ## A Living Standard
 

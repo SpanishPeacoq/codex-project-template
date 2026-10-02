@@ -54,6 +54,7 @@ Fill this in before the first production release. The Operator uses it to deploy
 Record durable decisions in `docs/adr/`. Link the most relevant ADRs here.
 
 - `docs/adr/0001-record-project-baseline.md`
+- `docs/adr/0002-adopt-agent-operating-model.md`
 
 ## Known Risks
 

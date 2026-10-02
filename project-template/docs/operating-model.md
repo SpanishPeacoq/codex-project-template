@@ -54,6 +54,9 @@ Record the actual role assignments for this project here:
 8. **Close.** The issue closes only after the Operator confirms it works in
    production.
 
+If the project does not deploy (for example, a library or a local tool), skip
+steps 5 to 7. The issue closes once its "done when" check passes on `main`.
+
 ### "Done when"
 
 Every issue has one or two lines that say how everyone will know the work is
@@ -81,8 +84,9 @@ production."
 
 ## Handoffs
 
-- GitHub issues are the only channel. No side chats and no copy-paste between
-  agents.
+- GitHub is the only channel. Issues carry handoffs; PR review threads carry
+  review findings and the Builder's answers. No side chats and no copy-paste
+  between agents.
 - A `next:<role>` label names whoever acts next: `next:builder`,
   `next:reviewer`, `next:operator`, or `next:owner`. An open issue has exactly
   one `next:` label.

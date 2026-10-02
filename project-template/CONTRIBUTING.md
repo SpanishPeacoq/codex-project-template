@@ -118,7 +118,7 @@ optional convenience only.
 
 ## Multi-Agent Work
 
-- Follow the roles and handoffs in `docs/operating-model.md`. GitHub issues are the only channel between agents.
+- Follow the roles and handoffs in `docs/operating-model.md`. GitHub issues (for handoffs) and PR review threads (for review discussion) are the only channels between agents.
 
 - State intended file or module ownership before editing.
 - Avoid overlapping edits to the same files.

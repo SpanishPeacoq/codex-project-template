@@ -42,6 +42,8 @@ Short description of what this project does and who it is for.
 │   ├── operating-model.md
 │   ├── lessons-learned.md
 │   └── adr/
+│       ├── 0001-record-project-baseline.md
+│       └── 0002-adopt-agent-operating-model.md
 └── .github/
     ├── pull_request_template.md
     ├── pr-scope.json
