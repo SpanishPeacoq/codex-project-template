@@ -128,6 +128,7 @@ Follow the roles, flow, and approval tiers in `docs/operating-model.md`.
 - If tests cannot be run, explain why and describe the risk.
 - Prefer small regression tests that prove the changed behavior directly.
 - A bug fix includes a test that fails on the old code. Also add a lookalike test that proves the fix does not fire when it should not.
+- Run CI once per commit. Test workflows trigger on pull requests and on pushes to `main` only, not on pushes to every branch; otherwise a branch with an open PR runs the full suite twice on the same commit. See `CONTRIBUTING.md`.
 - "Flaky" is not a root cause. A failure that happens again on a re-run is a real bug. Never skip or disable a test to get green.
 
 ## Review And Merge Rule

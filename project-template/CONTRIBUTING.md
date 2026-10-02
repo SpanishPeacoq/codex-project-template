@@ -134,6 +134,26 @@ Before submitting or committing finished work:
 - Treat a failure that repeats on re-run as a real bug, not a flake.
 - Document any skipped checks and why they were skipped.
 
+## CI Triggers
+
+Run each test workflow once per commit. Trigger it on pull requests and on
+pushes to `main` only. Do not also trigger on pushes to every branch: a push to
+a branch with an open PR would run the full suite twice on the same commit.
+Cancel older runs when a newer commit arrives on the same branch.
+
+```yaml
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+```
+
+To test a branch before opening a PR, open it as a draft PR.
+
 ## Security Review
 
 For security-sensitive changes, check:
