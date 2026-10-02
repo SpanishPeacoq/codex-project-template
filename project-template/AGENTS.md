@@ -5,6 +5,11 @@ single source of truth for every agent. Most coding agents read `AGENTS.md`
 directly; Claude Code reads `CLAUDE.md`, which imports this file. It extends
 the user's global agent instructions.
 
+Project standard version: v1.0.0
+(https://github.com/SpanishPeacoq/codex-project-template/releases/tag/v1.0.0).
+Update this line whenever the project syncs with a newer release of the
+standard.
+
 ## Writing Style Outside Coding Tasks
 
 When answering questions outside of coding tasks, use simple, direct English. Prefer short sentences, common words, concrete explanations, active voice, and consistent terminology. Avoid jargon, unnecessary technical language, long introductions, and overly formal phrasing.

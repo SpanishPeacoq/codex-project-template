@@ -60,7 +60,9 @@ To bring an existing project up to the current standard, compare its
 `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `docs/` with
 `project-template/`. Add what is missing in one PR, keep project-specific rules,
 and do not overwrite the project's own facts. Add new ADRs (such as `0002`)
-rather than editing the project's accepted ones.
+rather than editing the project's accepted ones. Then set the "Project
+standard version" line in the project's `AGENTS.md` to the release you synced
+from. Each release's notes list what changed since the previous one.
 
 ## A Living Standard
 
@@ -72,7 +74,13 @@ This repo improves over time with lessons from real projects.
    short rule in the right file.
 3. Cut rules that only fit one kind of project (for example, finance-only
    rules). Keep those in that project's `AGENTS.md`.
-4. Existing projects pick up the change the next time they are synced.
+4. After the PR merges, publish a release from the merge commit, with notes
+   on what changed. Use `vMAJOR.MINOR.PATCH`: patch for wording fixes, minor
+   for new rules, major for changes that alter how existing projects work.
+5. Update the "Project standard version" line in `project-template/AGENTS.md`
+   to the new release in the next PR.
+6. Existing projects pick up the change the next time they are synced, and
+   update their own version line.
 
 ## One Source Of Truth For Agents
 
