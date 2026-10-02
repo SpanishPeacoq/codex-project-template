@@ -22,16 +22,38 @@ Lead with the rule. Keep each entry to two or three lines. Never include
 secrets, account numbers, or personal data.
 
 ```text
-- <Rule, as an instruction a future agent can follow.> <Why, in one
-  sentence.> (<issue or PR link>)
+- [all projects] <Rule, as an instruction a future agent can follow.> <Why,
+  in one sentence.> (<issue or PR link>)
 ```
+
+Use the `[all projects]` tag only for lessons that pass the test below. Leave
+it off for lessons that only apply here.
+
+## Lessons For All Projects
+
+Some lessons matter beyond this project. Record them, every time, so future
+projects start with them.
+
+The test: would this rule help a project on a completely different topic? If
+yes, it applies to all projects. Most lessons about how we work (reviews,
+handoffs, approvals, testing, docs, privacy, agent setup) pass this test.
+Lessons about this project's domain, data, or tools usually do not.
+
+When a lesson passes the test:
+
+1. Add it here with the `[all projects]` tag. Write it without this project's
+   names, data, or domain terms, so it reads the same in any project.
+2. Propose it for the shared project standard
+   (https://github.com/SpanishPeacoq/codex-project-template): open an issue or
+   PR there, or tell the owner if you cannot reach that repository.
+3. Delete the entry here once the standard includes it and this project has
+   synced it into `AGENTS.md`.
 
 ## Promoting Lessons
 
-When a lesson becomes a standing rule, move it into `AGENTS.md` (or the right
-doc) and delete it here. If it applies to every project, also propose it for
-the shared project standard. This file stays short: only lessons not yet
-promoted, and project-specific traps.
+When a project-only lesson becomes a standing rule, move it into `AGENTS.md`
+(or the right doc) and delete it here. This file stays short: only lessons not
+yet promoted, and project-specific traps.
 
 ## Lessons
 
