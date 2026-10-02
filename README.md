@@ -74,11 +74,12 @@ This repo improves over time with lessons from real projects.
    short rule in the right file.
 3. Cut rules that only fit one kind of project (for example, finance-only
    rules). Keep those in that project's `AGENTS.md`.
-4. After the PR merges, publish a release from the merge commit, with notes
-   on what changed. Use `vMAJOR.MINOR.PATCH`: patch for wording fixes, minor
-   for new rules, major for changes that alter how existing projects work.
-5. Update the "Project standard version" line in `project-template/AGENTS.md`
-   to the new release in the next PR.
+4. In the same PR, set the "Project standard version" line in
+   `project-template/AGENTS.md` to the next release. Use
+   `vMAJOR.MINOR.PATCH`: patch for wording fixes, minor for new rules, major
+   for changes that alter how existing projects work.
+5. After the PR merges, publish that release from the merge commit, with notes
+   on what changed. The tagged template then names its own version.
 6. Existing projects pick up the change the next time they are synced, and
    update their own version line.
 
