@@ -1,7 +1,7 @@
 
 # codex-projects-standards
 
-Personal software project standards, documentation scaffolds, and agent instructions for coding agents such as Codex and Claude.
+Personal software project standards, documentation scaffolds, and agent instructions for coding agents.
 
 This repo is the source of truth for how I want software projects to work: the rules of the game for new and existing projects. It provides reusable templates for documentation, security, testing expectations, multi-agent coordination, and GitHub workflow setup.
 
@@ -73,8 +73,9 @@ This repo improves over time with lessons from real projects.
 
 ## One Source Of Truth For Agents
 
-`AGENTS.md` holds every rule. `CLAUDE.md` contains only a short note and
-`@AGENTS.md`, which makes Claude Code import the same file. Never put rules in
+`AGENTS.md` holds every rule. Most coding agents read it directly. Claude
+Code reads `CLAUDE.md` instead, so `CLAUDE.md` contains only a short note and
+`@AGENTS.md`, which imports the same file. Never put rules in
 `CLAUDE.md`; change `AGENTS.md` instead.
 
 ## How Codex Loads Instructions

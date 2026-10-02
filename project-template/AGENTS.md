@@ -1,8 +1,9 @@
 # AGENTS.md
 
 This file is the repo-local operating manual for coding agents. It is the
-single source of truth for every agent: `CLAUDE.md` imports it, and Codex
-reads it directly. It extends the user's global agent instructions.
+single source of truth for every agent. Most coding agents read `AGENTS.md`
+directly; Claude Code reads `CLAUDE.md`, which imports this file. It extends
+the user's global agent instructions.
 
 ## Writing Style Outside Coding Tasks
 
@@ -77,7 +78,7 @@ After the initial project baseline is committed, treat `main` as the clean integ
 - Start each reviewable change from current `origin/main` on a descriptive task branch. Follow an established repo convention; otherwise use `agent/<short-description>`.
 - Before editing, fetch the remote and update `main` with a fast-forward-only pull when the primary checkout is clean.
 - If `main` contains uncommitted work, do not stash, reset, switch, or overwrite it automatically. Preserve it and create a separate worktree from `origin/main`, or stop and ask for direction.
-- Use a separate worktree when work is parallel, assigned to another agent or Codex task, risky, long-lived, or needs `main` to remain available. A worktree is optional for a small sequential change handled by one agent in the current checkout.
+- Use a separate worktree when work is parallel, assigned to another agent, risky, long-lived, or needs `main` to remain available. A worktree is optional for a small sequential change handled by one agent in the current checkout.
 - Keep one branch checked out in only one worktree. Record the branch, worktree path, and intended file or module ownership before parallel edits.
 - Separate scope or architecture decisions from implementation when each deserves independent review.
 - Push the task branch and merge through a pull request. Do not merge or commit substantive work directly to `main` unless the user explicitly requests that workflow.
