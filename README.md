@@ -1,9 +1,9 @@
 
 # codex-projects-standards
 
-Personal software project standards, documentation scaffolds, and agent instructions for openAI codex.
+Personal software project standards, documentation scaffolds, and agent instructions for coding agents.
 
-This repo is the source of truth for how I want new software projects to begin. It provides reusable templates for documentation, security, testing expectations, multi-agent coordination, and GitHub workflow setup.
+This repo is the source of truth for how I want software projects to work: the rules of the game for new and existing projects. It provides reusable templates for documentation, security, testing expectations, multi-agent coordination, and GitHub workflow setup.
 
 ## Templates
 
@@ -16,14 +16,18 @@ The generic template includes:
 ```text
 README.md
 AGENTS.md
+CLAUDE.md
 CONTRIBUTING.md
 SECURITY.md
 .gitignore
 docs/
   product-requirements.md
   architecture.md
+  operating-model.md
+  lessons-learned.md
   adr/
     0001-record-project-baseline.md
+    0002-adopt-agent-operating-model.md
 .github/
   pull_request_template.md
   pr-scope.json
@@ -43,9 +47,39 @@ Copy the contents of `project-template/` into the root of a new project, then cu
 cp -R project-template/. /path/to/new-project/
 ```
 
-After the first push, enable branch protection for `main` and require the
-`pr-scope` check. The workflow is present in the scaffold, but GitHub branch
-protection is configured at the repository level.
+After the first push, complete the setup checklist in
+`docs/operating-model.md`: branch protection with the `pr-scope` check, agent
+identities, labels, and, if the project deploys, a protected `production`
+environment wired to its deploy jobs. The workflow
+is present in the scaffold, but these GitHub settings are configured at the
+repository level.
+
+### Existing Projects
+
+To bring an existing project up to the current standard, compare its
+`AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, `SECURITY.md`, and `docs/` with
+`project-template/`. Add what is missing in one PR, keep project-specific rules,
+and do not overwrite the project's own facts. Add new ADRs (such as `0002`)
+rather than editing the project's accepted ones.
+
+## A Living Standard
+
+This repo improves over time with lessons from real projects.
+
+1. A project records a rule it learned the hard way in its
+   `docs/lessons-learned.md`.
+2. If the lesson applies to every project, open a PR here that adds it as a
+   short rule in the right file.
+3. Cut rules that only fit one kind of project (for example, finance-only
+   rules). Keep those in that project's `AGENTS.md`.
+4. Existing projects pick up the change the next time they are synced.
+
+## One Source Of Truth For Agents
+
+`AGENTS.md` holds every rule. Most coding agents read it directly. Claude
+Code reads `CLAUDE.md` instead, so `CLAUDE.md` contains only a short note and
+`@AGENTS.md`, which imports the same file. Never put rules in
+`CLAUDE.md`; change `AGENTS.md` instead.
 
 ## How Codex Loads Instructions
 
@@ -73,7 +107,9 @@ The goal is useful structure, not clutter.
 Every new project should have:
 
 - A clear front door in `README.md`.
-- Repo-local coding-agent instructions in `AGENTS.md`.
+- Repo-local coding-agent instructions in `AGENTS.md`, imported by `CLAUDE.md`.
+- A clear operating model for the owner and agents in `docs/operating-model.md`.
+- A short lessons-learned file of rules learned the hard way.
 - A safe collaboration protocol in `CONTRIBUTING.md`.
 - Security expectations in `SECURITY.md`.
 - An authoritative user and product contract in `docs/product-requirements.md`.

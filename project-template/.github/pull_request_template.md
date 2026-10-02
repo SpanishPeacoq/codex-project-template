@@ -22,6 +22,8 @@
 
 - [ ] Relevant automated checks pass.
 - [ ] The changed behavior was verified directly.
+- [ ] Bug fixes include a test that fails on the old code and a lookalike test.
+- [ ] No secrets or private data in the diff, description, or linked evidence.
 
 ## Rollback
 

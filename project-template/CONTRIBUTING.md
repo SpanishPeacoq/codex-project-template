@@ -7,7 +7,8 @@ This project treats human and AI-agent contributions the same way: changes shoul
 - Check the current branch.
 - Check `git status`.
 - Pull the latest remote state when working on a shared branch.
-- Read `README.md`, `AGENTS.md`, `SECURITY.md`, `docs/product-requirements.md`, `docs/architecture.md`, and relevant ADRs.
+- Read `README.md`, `AGENTS.md`, `SECURITY.md`, `docs/operating-model.md`, `docs/product-requirements.md`, `docs/architecture.md`, `docs/lessons-learned.md`, and relevant ADRs.
+- Read the existing code before building. The feature may already exist.
 
 ## Branch And Worktree Workflow
 
@@ -108,7 +109,16 @@ Actions check required in branch protection. The workflow is the shared
 enforcement layer across humans, computers, and coding agents; local hooks are
 optional convenience only.
 
+## Review And Merge
+
+- Merge only when CI is green on the latest commit, the reviewer's latest review has finished, and every finding is fixed or answered.
+- Read every review thread before merging, not only the summary.
+- When findings contradict each other, ask the owner.
+- Merging is not deploying. Releases follow `docs/operating-model.md`.
+
 ## Multi-Agent Work
+
+- Follow the roles and handoffs in `docs/operating-model.md`. GitHub issues (for handoffs) and PR review threads (for review discussion) are the only channels between agents.
 
 - State intended file or module ownership before editing.
 - Avoid overlapping edits to the same files.
@@ -120,8 +130,29 @@ optional convenience only.
 Before submitting or committing finished work:
 
 - Run the relevant unit, integration, lint, typecheck, or build commands.
-- Add regression coverage for bug fixes.
+- Add regression coverage for bug fixes: a test that fails on the old code, plus a lookalike test that proves the fix does not fire when it should not.
+- Treat a failure that repeats on re-run as a real bug, not a flake.
 - Document any skipped checks and why they were skipped.
+
+## CI Triggers
+
+Run each test workflow once per commit. Trigger it on pull requests and on
+pushes to `main` only. Do not also trigger on pushes to every branch: a push to
+a branch with an open PR would run the full suite twice on the same commit.
+Cancel older runs when a newer commit arrives on the same branch.
+
+```yaml
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+```
+
+To test a branch before opening a PR, open it as a draft PR.
 
 ## Security Review
 
@@ -135,9 +166,11 @@ For security-sensitive changes, check:
 
 ## Definition Of Done
 
+- The issue's "done when" check passes. For anything that deploys, that means verified in production.
 - Code is implemented.
 - Tests/checks pass or documented blockers remain.
 - Relevant docs are updated.
 - ADRs capture important decisions.
+- Any rule learned the hard way is added to `docs/lessons-learned.md`.
 - The PR template is complete and the `pr-scope` check passes.
 - Changes are committed and pushed when appropriate.
