@@ -28,6 +28,7 @@ Short description of what this project does and who it is for.
 .
 ├── README.md
 ├── AGENTS.md
+├── CLAUDE.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 ├── .gitignore
@@ -38,6 +39,8 @@ Short description of what this project does and who it is for.
 ├── docs/
 │   ├── product-requirements.md
 │   ├── architecture.md
+│   ├── operating-model.md
+│   ├── lessons-learned.md
 │   └── adr/
 └── .github/
     ├── pull_request_template.md
@@ -56,7 +59,10 @@ configuration, add a safe `.env.example`; never commit real credentials.
 - `docs/product-requirements.md` is the authoritative statement of user needs, scope, and acceptance criteria.
 - `docs/architecture.md` explains the current system shape.
 - `docs/adr/` records important decisions and tradeoffs.
-- `AGENTS.md` tells coding agents how to work in this repo.
+- `docs/operating-model.md` defines roles, handoffs, and approvals between the owner and agents.
+- `docs/lessons-learned.md` records bugs, incidents, and the rules they taught.
+- `AGENTS.md` tells coding agents how to work in this repo. It is the single source of truth for every agent.
+- `CLAUDE.md` only imports `AGENTS.md`, so Claude follows the same rules.
 - `CONTRIBUTING.md` describes how changes enter the repo safely.
 - `SECURITY.md` captures security expectations.
 - `scripts/check_pr_scope.py` enforces the review-size and scope contract.
@@ -64,7 +70,8 @@ configuration, add a safe `.env.example`; never commit real credentials.
 ## Pull Request Protection
 
 After the first push, enable branch protection for `main` and make the
-`pr-scope` GitHub Actions check required. Customize the warning and hard limits
+`pr-scope` GitHub Actions check required. Complete the rest of the setup
+checklist in `docs/operating-model.md`. Customize the warning and hard limits
 in `.github/pr-scope.json` when the project has evidence that different limits
 are more appropriate.
 

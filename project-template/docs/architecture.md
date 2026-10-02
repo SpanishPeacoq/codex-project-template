@@ -38,6 +38,17 @@ Document important boundaries:
 
 Describe how the project runs locally and how it is deployed.
 
+## Operations
+
+Fill this in before the first production release. The Operator uses it to deploy and verify.
+
+- Environments: local, staging, production. Note any that do not exist yet.
+- Deploy: how a release goes out, from which commit or tag.
+- Rollback: how to undo a release, and how long it takes.
+- Health signals: what "working" means (for example, a health endpoint, error rate, a job that must run daily).
+- Alerts: what triggers an alert and who receives it.
+- Logs and evidence: where logs live. Point to them by location; do not copy private data into issues.
+
 ## Important Decisions
 
 Record durable decisions in `docs/adr/`. Link the most relevant ADRs here.

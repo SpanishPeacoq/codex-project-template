@@ -1,6 +1,8 @@
 # AGENTS.md
 
-This file is the repo-local operating manual for coding agents. It extends the user's global Codex instructions.
+This file is the repo-local operating manual for coding agents. It is the
+single source of truth for every agent: `CLAUDE.md` imports it, and Codex
+reads it directly. It extends the user's global agent instructions.
 
 ## Writing Style Outside Coding Tasks
 
@@ -28,13 +30,15 @@ Describe the purpose of this repository in one or two paragraphs.
 - Prefer simple, durable designs over clever abstractions.
 - Do not change architecture, business rules, data contracts, or security posture without updating or adding an ADR.
 - Never commit secrets, credentials, private keys, tokens, or live `.env` values.
+- Never approve your own risky action. Production deploys, data deletion or migration, spending, live external changes, and disputed decisions need the owner's direct approval. See `docs/operating-model.md`.
 
 ## First Steps
 
 Before substantial edits:
 
 - Check `git status` and the current branch.
-- Read `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `docs/product-requirements.md`, `docs/architecture.md`, and relevant ADRs.
+- Read `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `docs/operating-model.md`, `docs/product-requirements.md`, `docs/architecture.md`, `docs/lessons-learned.md`, and relevant ADRs.
+- Check before you build. Read the existing code first: the feature may already exist and only need docs or a small change.
 - Identify the smallest safe change that satisfies the request.
 - If multiple agents are working, state which files or modules you intend to own.
 
@@ -95,6 +99,18 @@ Replace these with real project commands as soon as they exist.
 # run lint
 ```
 
+## Roles And Handoffs
+
+Follow the roles, flow, and approval tiers in `docs/operating-model.md`.
+
+- Know your role. One owner per next action.
+- GitHub issues are the only channel between agents. No side chats and no copy-paste relays.
+- When you hand off, change the assignee (or `next:<role>` label) and say in a comment exactly what you need.
+- When you receive a handoff, check the evidence before acting. Do not accept the sender's diagnosis without checking.
+- Every issue has a "done when" line: a check anyone can run. Work stops there, not earlier.
+- Ask the owner short questions: one question, answerable with yes/no or a number, with what each answer leads to.
+- Look for problems in other agents' work. Do not agree by default.
+
 ## Multi-Agent Coordination
 
 - Avoid parallel edits to the same file when possible.
@@ -110,6 +126,20 @@ Replace these with real project commands as soon as they exist.
 - Run relevant tests before claiming completion.
 - If tests cannot be run, explain why and describe the risk.
 - Prefer small regression tests that prove the changed behavior directly.
+- A bug fix includes a test that fails on the old code. Also add a lookalike test that proves the fix does not fire when it should not.
+- "Flaky" is not a root cause. A failure that happens again on a re-run is a real bug. Never skip or disable a test to get green.
+
+## Review And Merge Rule
+
+Merge only when all of these are true:
+
+- CI is green on the latest commit.
+- The reviewer's latest review has finished.
+- Every review thread has been read, not just the summary, and every finding is fixed or answered.
+
+When review findings contradict each other, ask the owner. Do not pick one quietly.
+
+Merging is not deploying. A release goes out from an exact commit or tag, after the owner's approval, and is then verified in production.
 
 ## Security Expectations
 
@@ -117,9 +147,27 @@ Replace these with real project commands as soon as they exist.
 - Validate inputs at trust boundaries.
 - Use least-privilege defaults.
 - Redact secrets in logs and documentation.
+- Keep private data out of issues, PRs, and commits: no personal data, account numbers, or customer details. Point to evidence by its location instead.
+- Read secrets and personal identifiers from settings outside the repo. If a required setting is missing, fail safely; never fall back to a default value.
+
+## Data Rules
+
+- Keep one source of truth for each kind of data. Generate exports when needed; never treat a copy as the record.
+- Handle time zones explicitly. Store the source time zone, set it explicitly in client libraries, and never guess it from a format.
+- When a risky action (sending messages, writing core data, calling paid APIs) needs a single owner module, enforce it with a test that scans the whole repo, scripts included. Allow exceptions by name, with the reason.
+
+## Docs And Memory
+
+Agents start fresh each session. If it is not written in the repo or an issue, the next session will not know it.
+
+- Update docs in the same PR as the facts they describe. Do not keep progress logs in docs; git history and PRs are the record.
+- Write an ADR when a choice changes architecture, risk, or who can do what. Never edit an accepted ADR; supersede it with a new one.
+- Read `docs/lessons-learned.md` before debugging. Add an entry after fixing a bug or incident.
+- When a lesson applies to every project, propose it for the shared project standard as well.
 
 ## Definition Of Done
 
+- The issue's "done when" check passes. For anything that deploys, that means verified in production, not merged or deployed.
 - The change is implemented and scoped.
 - Relevant tests or checks have been run, or blockers are documented.
 - Security-sensitive surfaces have been considered.

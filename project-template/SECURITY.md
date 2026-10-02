@@ -10,6 +10,12 @@ This project is early-stage unless stated otherwise. Security expectations still
 - Use `.env.example` to document required variables.
 - Never commit tokens, private keys, passwords, session cookies, or production credentials.
 - Redact secrets from logs, screenshots, issues, and documentation.
+- Read secrets and personal identifiers from settings outside the repo. If a required setting is missing, fail safely; never fall back to a default value.
+
+## Private Data
+
+- Keep personal data, account numbers, and customer details out of issues, PRs, commits, and docs. Point to evidence by its location instead.
+- Plan for this before real users or accounts exist. Scrubbing history later is slow and incomplete.
 
 ## Security-Sensitive Areas
 
