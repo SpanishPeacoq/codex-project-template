@@ -151,6 +151,6 @@ For security-sensitive changes, check:
 - Tests/checks pass or documented blockers remain.
 - Relevant docs are updated.
 - ADRs capture important decisions.
-- Bugs and incidents have an entry in `docs/lessons-learned.md`.
+- Any rule learned the hard way is added to `docs/lessons-learned.md`.
 - The PR template is complete and the `pr-scope` check passes.
 - Changes are committed and pushed when appropriate.

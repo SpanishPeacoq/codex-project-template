@@ -60,7 +60,7 @@ configuration, add a safe `.env.example`; never commit real credentials.
 - `docs/architecture.md` explains the current system shape.
 - `docs/adr/` records important decisions and tradeoffs.
 - `docs/operating-model.md` defines roles, handoffs, and approvals between the owner and agents.
-- `docs/lessons-learned.md` records bugs, incidents, and the rules they taught.
+- `docs/lessons-learned.md` lists rules this project learned the hard way.
 - `AGENTS.md` tells coding agents how to work in this repo. It is the single source of truth for every agent.
 - `CLAUDE.md` only imports `AGENTS.md`, so Claude follows the same rules.
 - `CONTRIBUTING.md` describes how changes enter the repo safely.

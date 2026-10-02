@@ -77,7 +77,7 @@ production."
 3. The Builder fixes it with a test that fails on the old code, plus a
    lookalike test that proves the fix does not fire when it should not.
 4. Release and verify as above. The Operator closes the bug.
-5. Add an entry to `docs/lessons-learned.md`.
+5. If the bug taught a rule worth keeping, add it to `docs/lessons-learned.md`.
 
 ## Handoffs
 
@@ -124,8 +124,9 @@ money, or security.
 2. First restore service: roll back or disable the feature. Fix forward only
    if rollback is not possible.
 3. Follow the Bug Flow for the real fix.
-4. Write a short, blameless note in `docs/lessons-learned.md`: what happened,
-   the root cause, and the rule to keep.
+4. Write a short, blameless summary on the incident issue: what happened, the
+   root cause, and the fix. Add the rule it taught to
+   `docs/lessons-learned.md`.
 
 ## Agent Identities
 

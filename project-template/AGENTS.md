@@ -162,7 +162,7 @@ Agents start fresh each session. If it is not written in the repo or an issue, t
 
 - Update docs in the same PR as the facts they describe. Do not keep progress logs in docs; git history and PRs are the record.
 - Write an ADR when a choice changes architecture, risk, or who can do what. Never edit an accepted ADR; supersede it with a new one.
-- Read `docs/lessons-learned.md` before debugging. Add an entry after fixing a bug or incident.
+- Read `docs/lessons-learned.md` before debugging. Add an entry only when a mistake taught a rule worth keeping; bug details stay in the issue and PR.
 - When a lesson applies to every project, propose it for the shared project standard as well.
 
 ## Definition Of Done

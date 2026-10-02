@@ -63,7 +63,7 @@ and do not overwrite the project's own facts.
 
 This repo improves over time with lessons from real projects.
 
-1. A project records a bug, incident, or process mistake in its
+1. A project records a rule it learned the hard way in its
    `docs/lessons-learned.md`.
 2. If the lesson applies to every project, open a PR here that adds it as a
    short rule in the right file.
@@ -105,7 +105,7 @@ Every new project should have:
 - A clear front door in `README.md`.
 - Repo-local coding-agent instructions in `AGENTS.md`, imported by `CLAUDE.md`.
 - A clear operating model for the owner and agents in `docs/operating-model.md`.
-- A lessons-learned file that agents read before debugging.
+- A short lessons-learned file of rules learned the hard way.
 - A safe collaboration protocol in `CONTRIBUTING.md`.
 - Security expectations in `SECURITY.md`.
 - An authoritative user and product contract in `docs/product-requirements.md`.

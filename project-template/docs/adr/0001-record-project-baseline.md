@@ -20,7 +20,7 @@ Use the following baseline files:
 - `docs/product-requirements.md` for user needs, scope, non-goals, and acceptance criteria.
 - `docs/architecture.md` for the current system map and operations.
 - `docs/operating-model.md` for roles, handoffs, and approvals between the owner and agents.
-- `docs/lessons-learned.md` for bugs, incidents, and the rules they taught.
+- `docs/lessons-learned.md` for rules the project learned the hard way.
 - `docs/adr/` for important decisions.
 - `.github/` for collaboration templates and automation when hosted on GitHub.
 
