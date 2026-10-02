@@ -38,7 +38,7 @@ Record the actual role assignments for this project here:
 ## Work Flow
 
 1. **Issue.** The owner or Product writes the issue with a "done when" line.
-   Assign it to the Builder.
+   Label it `next:builder`.
 2. **Build.** The Builder reads the existing code first, then opens one PR per
    purpose, with tests, linked to the issue.
 3. **Review.** The Reviewer runs on every commit. The Builder fixes or answers
@@ -83,11 +83,14 @@ production."
 
 - GitHub issues are the only channel. No side chats and no copy-paste between
   agents.
-- The issue assignee is whoever acts next. If agents share a GitHub identity,
-  use a label per role instead (for example `next:builder`, `next:operator`,
-  `next:owner`).
-- Whoever hands off changes the assignee or label and says in a comment
-  exactly what they need.
+- A `next:<role>` label names whoever acts next: `next:builder`,
+  `next:reviewer`, `next:operator`, or `next:owner`. An open issue has exactly
+  one `next:` label.
+- Labels work with any agent identity. GitHub Apps usually cannot be issue
+  assignees, so do not route work through assignees. The owner may still use
+  assignees for personal tracking.
+- Whoever hands off swaps the label and says in a comment exactly what they
+  need.
 - Whoever receives the handoff checks the evidence before acting.
 - Questions to the owner are short: one question, answerable with yes/no or a
   number, with what each answer leads to.
@@ -153,8 +156,8 @@ These are GitHub settings, not files. Do them once per repository.
 - [ ] Create a `production` environment with the owner as required reviewer,
       so deploys need recorded approval.
 - [ ] Install or create the agent GitHub Apps and record them in Roles.
-- [ ] Create labels: `incident`, and `next:<role>` labels if identities are
-      shared.
+- [ ] Create labels: `incident`, `next:builder`, `next:reviewer`,
+      `next:operator`, and `next:owner`.
 
 ## Watch Out For
 

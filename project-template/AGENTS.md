@@ -106,7 +106,7 @@ Follow the roles, flow, and approval tiers in `docs/operating-model.md`.
 
 - Know your role. One owner per next action.
 - GitHub issues are the only channel between agents. No side chats and no copy-paste relays.
-- When you hand off, change the assignee (or `next:<role>` label) and say in a comment exactly what you need.
+- A `next:<role>` label names whoever acts next. When you hand off, swap the label and say in a comment exactly what you need. Do not use assignees for handoffs.
 - When you receive a handoff, check the evidence before acting. Do not accept the sender's diagnosis without checking.
 - Every issue has a "done when" line: a check anyone can run. Work stops there, not earlier.
 - Ask the owner short questions: one question, answerable with yes/no or a number, with what each answer leads to.
