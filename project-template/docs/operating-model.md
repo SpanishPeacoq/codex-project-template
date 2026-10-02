@@ -87,9 +87,10 @@ production."
 - GitHub is the only channel. Issues carry handoffs; PR review threads carry
   review findings and the Builder's answers. No side chats and no copy-paste
   between agents.
-- A `next:<role>` label names whoever acts next: `next:builder`,
-  `next:reviewer`, `next:operator`, or `next:owner`. An open issue has exactly
-  one `next:` label.
+- A `next:<role>` label names whoever acts next. Create one label for each
+  active role: `next:owner`, `next:builder`, `next:reviewer`, and
+  `next:operator` by default, plus `next:product` or `next:qa` if those roles
+  are separate. An open issue has exactly one `next:` label.
 - Labels work with any agent identity. GitHub Apps usually cannot be issue
   assignees, so do not route work through assignees. The owner may still use
   assignees for personal tracking.
@@ -157,11 +158,19 @@ These are GitHub settings, not files. Do them once per repository.
       checks, and block force-pushes.
 - [ ] Require the owner's approval on PRs if the owner wants to sign off on
       every merge.
-- [ ] Create a `production` environment with the owner as required reviewer,
-      so deploys need recorded approval.
+- [ ] If the project deploys: create a `production` environment with the
+      owner as required reviewer, and set `environment: production` on every
+      deploy job. The approval only applies to jobs that name the
+      environment.
+
+      ```yaml
+      jobs:
+        deploy:
+          environment: production
+      ```
 - [ ] Install or create the agent GitHub Apps and record them in Roles.
-- [ ] Create labels: `incident`, `next:builder`, `next:reviewer`,
-      `next:operator`, and `next:owner`.
+- [ ] Create labels: `incident`, plus one `next:<role>` label for each active
+      role (see Handoffs).
 
 ## Watch Out For
 

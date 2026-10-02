@@ -48,8 +48,9 @@ cp -R project-template/. /path/to/new-project/
 ```
 
 After the first push, complete the setup checklist in
-`docs/operating-model.md`: branch protection with the `pr-scope` check, a
-protected `production` environment, agent identities, and labels. The workflow
+`docs/operating-model.md`: branch protection with the `pr-scope` check, agent
+identities, labels, and, if the project deploys, a protected `production`
+environment wired to its deploy jobs. The workflow
 is present in the scaffold, but these GitHub settings are configured at the
 repository level.
 
